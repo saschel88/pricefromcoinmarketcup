@@ -8,36 +8,39 @@ import (
 	"github.com/astaxie/beego/logs"
 )
 
+// Уровень цены в USD
+type priceUSD struct {
+	Price float64 `json:"price"`
+}
+//  Уровень данных по USD
+type quotesStruct struct {
+	USD priceUSD `json:"USD"`
+}
+// Уровень данных Валюты
+type coinsIDNameSymbol struct {
 
-
-type coinsData struct {
-	//	Price_usd string `json:"price_usd"`
 	ID int `json:"id"`
 	Name string `json:"name"`
 	Symbol string `json:"symbol"`
-
+	Qoutes quotesStruct `json:"quotes"`
 }
-
+// Верхний уровень структуры
 type jsonStruct struct {
-	Data map[string]coinsData `json:"data"`
+	Data map[string]coinsIDNameSymbol `json:"data"`
 
 }
 
-const countCoins  = 50
-var urlApiv2 = "https://api.coinmarketcap.com/v2/ticker/?limit=50"
-var  urlApiv2Listing ="https://api.coinmarketcap.com/v2/listings/"
+var urlApiv2 = "https://api.coinmarketcap.com/v2/ticker/?limit=2"
+
 
 //Функция получения ID по значению Symbol валюты
 
-//func getIDbySymbol (sliceOfCoinData []coinsData) (map[string]string, string) {
+//func getIDbySymbol (sliceOfCoinData []jsonStruct) (map[string]string, string) {
 //
 //}
 
 func main() {
-
 	coinsData  := jsonStruct{}
-
-
 	resp, err := http.Get(urlApiv2) //получаем данные с coinmarcetcap c помощью Get запроса по URL = urlApiv2
 	if err != nil {               //проверка на ошибку
 		log.Fatal("Получить данные по GET запросу не удалось: ", err)
@@ -48,7 +51,7 @@ func main() {
 	if err != nil {               //проверка на ошибку
 		log.Fatal("Считать данные с тела resp в []byte  не удалось: ", err)
 	}
-	logs.Warning(string(respBody))
+
 
 	err = json.Unmarshal(respBody, &coinsData) // Распарсиваем данные с respBody в массив структур sliceOfCoinData
 	if err != nil {                                       //Проверяем на ошибки
