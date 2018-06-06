@@ -1,100 +1,47 @@
-ADX	adx-net
-AEON	aeon
-AMP	synereo
-ANT	aragon
-ARDR	ardor
-BCH	bitcoin-cash
-BCN	bytecoin-bcn
-BLK	blackcoin
-BNT	bancor
-BTC	bitcoin
-CFI	cofound-it
-CLAM	clams
-CRB	creditbit
-CVC	civic
-DASH	dash
-DBIX	dubaicoin-dbix
-DCR	decred
-DGB	digibyte
-DGD	digixdao
-DOGE	dogecoin
-EFL	e-gulden
-EMC	emercoin
-ENJ	enjin-coin
-EOS	eos
-ETC	ethereum-classic
-ETH	ethereum
-FCT	factom
-FLDC	foldingcoin
-GAME	gamecredits
-GCR	global-currency-reserve
-GEO	geocoin
-GNO	gnosis-gno
-GNT	golem-network-tokens
-IFT	investfeed
-IXT	ixledger
-KICK	kickico
-KNC	kyber-network
-LBC	library-credit
-LSK	lisk
-LTC	litecoin
-MAID	maidsafecoin
-MANA	decentraland
-MGO	mobilego
-MNE	minereum
-MONA	monacoin
-MUSIC	musicoin
-NAV	nav-coin
-NEO	neo
-NLC2	nolimitcoin
-NMC	namecoin
-NMR	numeraire
-NVC	novacoin
-NXC	nexium
-NXS	nexus
-NXT	nxt
-ODN	obsidian
-OMG	omisego
-ORME	ormeus-coin
-PAY	tenx
-PINK	pinkcoin
-POSW	posw-coin
-PPC	peercoin
-PUT	putincoin
-QAU	quantum
-R	revain
-RDD	reddcoin
-SC	siacoin
-SCL	sociall
-SIB	sibcoin
-SKIN	skincoin
-SNGLS	singulardtv
-SNM	sonm
-SNT	status
-STEEM	steem
-STORJ	storj
-STRAT	stratis
-STX	stox
-SWT	swarm-city
-TIME	chronobank
-TNT	tierion
-TRST	trust
-TRX	tron
-USDT	tether
-VEN	vechain
-VIB	viberate
-VOISE	voisecom
-VOX	voxels
-WAVES	waves
-WINGS	wings
-XAUR	xaurum
-XBY	xtrabytes
-XDN	digitalnote
-XEM	nem
-XMR	monero
-XRP	ripple
-XVG	verge
-ZCL	zclassic
-ZEC	zcash
-ZEN	zencash
-ZRX	0x
+ADA
+AE
+Ardor
+BAT
+BCH
+BCN
+BNB
+BTC
+BTM
+CVC
+CVCoin
+DASH
+DCR
+DGB
+EOS
+ETC
+ETH
+GAME
+GNT
+ICX
+IOTA
+KNC
+LSK
+LTC
+MCO
+NEO
+OMG
+ONT
+QTUM
+SC
+SNT
+STEEM
+STORJ
+STRAT
+SYS
+TRX
+VEN
+VIU
+WAVES
+XEM
+XLM 
+XMR
+XRP
+XVG
+ZEC
+ZIL
+ZRX
