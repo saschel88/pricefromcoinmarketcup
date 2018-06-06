@@ -24,7 +24,7 @@ type jsonStruct struct {
 }
 
 const countCoins  = 50
-var urlApiv2 = "https://api.coinmarketcap.com/v2/ticker/?limit=1"
+var urlApiv2 = "https://api.coinmarketcap.com/v2/ticker/?limit=50"
 var  urlApiv2Listing ="https://api.coinmarketcap.com/v2/listings/"
 
 //Функция получения ID по значению Symbol валюты
@@ -49,7 +49,7 @@ func main() {
 		log.Fatal("Считать данные с тела resp в []byte  не удалось: ", err)
 	}
 	logs.Warning(string(respBody))
-	logs.Info(coinsData)
+
 	err = json.Unmarshal(respBody, &coinsData) // Распарсиваем данные с respBody в массив структур sliceOfCoinData
 	if err != nil {                                       //Проверяем на ошибки
 		log.Fatal("Not UnMarshaling:", err)
