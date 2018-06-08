@@ -8,6 +8,7 @@ import (
 	"strings"
 	"strconv"
 	"os"
+	"github.com/astaxie/beego/logs"
 )
 
 // Уровень цены в USD
@@ -37,9 +38,12 @@ type coinsSymbolPrcie struct {
 	Price float64
 }
 
-var urlApiv2 = "https://api.coinmarketcap.com/v2/ticker/?limit=100"
+var urlApiV2 = "https://api.coinmarketcap.com/v2/ticker/?limit=200"
+var urlApiV2StartLimit ="https://api.coinmarketcap.com/v2/ticker/?start="
+//https://api.coinmarketcap.com/v2/ticker/?start=101&limit=10
 
 const osargsGetID  = "ID"
+
 
 
 //Функция получения ID по значению Symbol валютыё
@@ -80,7 +84,7 @@ func getPriceByID (coinsData jsonStruct, currencyListInFile []string) ( string, 
 	for k, arrayV := range currecyIDArray {
 		for _,v:=range coinsData.Data{
 			if v.ID==arrayV {
-				stringIDSymbolAndPrice+=currencyListInFile[k]+"\t"+strconv.FormatFloat(v.Qoutes.USD.Price, 'f', -1, 64)+"\n" //fmt 'f' означает, что представление формата без экспоненты
+				stringIDSymbolAndPrice+=currencyListInFile[k]+"\t"+strconv.FormatFloat(v.Qoutes.USD.Price, 'f', -1, 64)+"\n" //fmt 'f' означает, что представление без экспоненты
 
 			}
 		}
@@ -90,8 +94,21 @@ return stringIDSymbolAndPrice,nil
 }
 
 func main() {
+	tmpURLApiV2StartLimit:=""
+	tmpStart:=100
+	tmpLimit:="100"
+	for i:=1;i<4 ;i++  {
+		tmpURLApiV2StartLimit=urlApiV2StartLimit+strconv.Itoa(tmpStart*i+1)+"&limit="+tmpLimit
+		logs.Info(tmpURLApiV2StartLimit)
+		tmpURLApiV2StartLimit=""
+
+	}
+
+
+
+
 	coinsData  := jsonStruct{}
-	resp, err := http.Get(urlApiv2) //получаем данные с coinmarcetcap c помощью Get запроса по URL = urlApiv2
+	resp, err := http.Get(urlApiV2) //получаем данные с coinmarcetcap c помощью Get запроса по URL = urlApiv2
 	if err != nil {               //проверка на ошибку
 		log.Fatal("Получить данные по GET запросу не удалось: ", err)
 	}
@@ -105,7 +122,7 @@ func main() {
 		log.Fatal("Not UnMarshaling:", err)
 	}
 
-
+	logs.Warning(len(respBody))
 
 	bs, err := ioutil.ReadFile("currencyold.txt") //Считываем с файла перечень валлют, которыми торгуем
 	if err != nil {
@@ -146,13 +163,12 @@ func main() {
 
 		ioutil.WriteFile("currencynew.txt", []byte(stringIDAndSymbol), 0777)
 
-	}
+	}else {
 
-	//Формирование данных для получения ID Symbol Price
+			//Формирование данных для получения ID Symbol Price
 
+			currencyStringToFileNew, _ := getPriceByID(coinsData, currencyListInFile)
 
-	currencyStringToFileNew,_:=getPriceByID(coinsData,currencyListInFile)
-
-
-	ioutil.WriteFile("currencynew.txt", []byte(currencyStringToFileNew), 0777)
+			ioutil.WriteFile("currencynew.txt", []byte(currencyStringToFileNew), 0777)
+		}
 }
