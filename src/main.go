@@ -88,7 +88,7 @@ func getPriceByID (coinsData jsonStruct, currencyListInFile []string) ( string, 
 			}
 		}
 	}
-return stringIDSymbolAndPrice,nil
+return strings.Replace(stringIDSymbolAndPrice,".",",",-1),nil
 
 }
 
@@ -177,4 +177,5 @@ func main() {
 
 			ioutil.WriteFile("currencynew.txt", []byte(currencyStringToFileNew), 0777)
 		}
+
 }
