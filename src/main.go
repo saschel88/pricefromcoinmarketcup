@@ -37,7 +37,6 @@ type coinsSymbolPrcie struct {
 	Price float64
 }
 
-var urlApiV2 = "https://api.coinmarketcap.com/v2/ticker/?limit=200"
 var urlApiV2StartLimit ="https://api.coinmarketcap.com/v2/ticker/?start="
 //https://api.coinmarketcap.com/v2/ticker/?start=101&limit=10
 
@@ -98,8 +97,8 @@ func main() {
 	tmpLimit:="100"
 	coinsData  := jsonStruct{}
 
-	for i:=1;i<4 ;i++  {
-
+	for i:=1;i<10 ;i++  {
+		//формируем URL
 		tmpURLApiV2StartLimit=urlApiV2StartLimit+strconv.Itoa(tmpStart+1)+"&limit="+tmpLimit
 
 		resp, err := http.Get(tmpURLApiV2StartLimit) //получаем данные с coinmarcetcap c помощью Get запроса по URL = urlApiv2
